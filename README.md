@@ -2,7 +2,7 @@
 Graphs coursework
 
 ### how-to:
-1. Update dependencies throw;
+1. Update dependencies throw:
 ```bash
 $ npm i && bower i
 ```
