@@ -1,0 +1,25 @@
+{
+  "name": "graphs",
+  "version": "1.0.0",
+  "description": "Graphs coursework",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "es6": "node_modules/.bin/babel src/build/app.js --watch --out-file src/app/app.js",
+    "w": "node_modules/.bin/watchify src/app/app.js -o src/app/bundle.js -v",
+    "watch":"npm run es6 & npm run w"
+  },
+  "author": "Ragozin Nikita",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "bower": "^1.8.0",
+    "browserify": "^13.1.1",
+    "cytoscape": "^2.7.11",
+    "gulp": "^3.9.1",
+    "jquery": "^3.1.1",
+    "watchify": "^3.7.0"
+  }
+}

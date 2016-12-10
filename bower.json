@@ -1,0 +1,18 @@
+{
+  "name": "graph-lab",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Ragozin Nikita <lastjanuary@yandex.ru>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "materialize": "^0.97.8"
+  }
+}
