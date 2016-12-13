@@ -1,66 +1,29 @@
-var cytoscape = require('cytoscape');
-var $ = require('jQuery');
+let $ = require('jQuery');
+let Graph = require('../app/graph.js');
+let _graph = new Graph('root', null, null);
 
-let cy = cytoscape({
-
-container: $('#root'),
-
-elements: [],
-
-style: [
-{
-    selector: 'node',
-    style: {
-        'content': 'data(id)',
-        'text-opacity': 0.7,
-        'text-valign': 'center',
-        'text-halign': 'center',
-        'background-color': '#FE5E57'
-    }
-},
-
-{
-    selector: 'edge',
-    style: {
-        'width': 4,
-        'target-arrow-shape': 'triangle',
-        'line-color': '#9dbaea',
-        'target-arrow-color': '#9dbaea',
-        'curve-style': 'bezier'
-    }
-}
-],
-layout: {
-    name: 'grid'
-}
-});
-
-let myLayout = {
-    name: 'grid',
-    animate: true
-}
-
-let nodeCount = 0;
 $(document).ready( function() {
-    $('.AddNode').click( function() {
-        cy.add({group: 'nodes',
-                data: {id: nodeCount.toString()}});
-        nodeCount++;
-        cy.layout(myLayout);
+    $('.AddNode').click(function () {
+        _graph.AddNode();
     });
-    $('.DeleteNode').click( function() {
-        cy.$(':selected').remove();
+    $('.DeleteNode').click(function () {
+        _graph.RemoveNode();
     });
-    $('.CreateEdge').click( function() {
+    $('.CreateEdge').click(function () {
         let from = $('#from').val();
         let to = $('#to').val();
 
         $('#from').val('');
         $('#to').val('');
-        
-        cy.add({group: 'edges',
-            data:{id: 'edge_'+from+"_"+to, source: from, target: to}});
-        cy.layout(myLayout);
+
+        _graph.CreateEdge(from, to);
     });
+    $('.Export').click(function () {
+        let json = _graph.ExportAsJson();
+        console.log(json);
+        let tab = window.open('about:blank');
+        tab.document.write(JSON.stringify(json));
+        tab.focus();
+    })
 });
 

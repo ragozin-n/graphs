@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "es6": "node_modules/.bin/babel src/build/app.js --watch --out-file src/app/app.js",
+    "es6_lib": "node_modules/.bin/babel src/build/graph.js --watch --out-file src/app/graph.js",
     "w": "node_modules/.bin/watchify src/app/app.js -o src/app/bundle.js -v",
-    "watch":"npm run es6 & npm run w"
+    "watch":"npm run es6 & npm run w & npm run es6_lib"
   },
   "author": "Ragozin Nikita",
   "license": "ISC",

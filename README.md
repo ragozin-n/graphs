@@ -16,5 +16,5 @@ $ npm run watch
 ```
 4. Raise http-server:
 ```bash
-$ cd build; http-server
+$ http-server
 ```
