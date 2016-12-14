@@ -1,10 +1,10 @@
 let $ = require('jQuery');
 let Graph = require('../app/graph.js');
-let _graph = new Graph('root', null, null);
+let _graph = new Graph('root', null);
 
 $(document).ready( function() {
     $('.AddNode').click(function () {
-        _graph.AddNode();
+        _graph.AddNode(null);
     });
     $('.DeleteNode').click(function () {
         _graph.RemoveNode();

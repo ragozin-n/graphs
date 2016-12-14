@@ -1,15 +1,16 @@
 let cytoscape = require('cytoscape');
 
 class Graph {
-	constructor(root_element_id, styles, layout) {
+	constructor(root_element_id, styles) {
         this.nodeCount = 0;
         this.layout = {
             name: 'grid',
             animate: true
         };
+        this.lastClickedId = 0;
         //styles позволяет задавать тип графа
         //layout позволяет задавать расположение графа на странице
-        if (!styles || !layout) {
+        if (!styles) {
             this.graph = cytoscape({
                 container: document.querySelector('#' + root_element_id),
                 elements: [],
@@ -39,16 +40,41 @@ class Graph {
                     name: 'grid'
                 }
             });
+        } else {
+            this.graph = cytoscape({
+                container: document.querySelector('#' + root_element_id),
+                elements: [],
+                style: styles,
+                layout: {
+                    name: 'grid'
+                }
+            });
         }
+        var debug_info = function (event) {
+            console.log("clicked on " + event.cyTarget.data("id"));
+            this.lastClickedId = event.cyTarget.data("id");
+            console.log("last clicked: " + this.lastClickedId);
+        };
+        //добавил для дебага
+        this.graph.on('click', debug_info.bind(this));
     }
 
-	AddNode() {
-        this.graph.add({
-            group: 'nodes',
-            data: {id: this.nodeCount.toString()}
-        });
-        this.nodeCount++;
-        this.graph.layout(this.layout);
+	AddNode(name) {
+        if(!name) {
+            this.graph.add({
+                group: 'nodes',
+                data: {id: this.nodeCount.toString()}
+            });
+            this.nodeCount++;
+            this.graph.layout(this.layout);
+        } else {
+            this.graph.add({
+                group: 'nodes',
+                data: {id: name.toString()}
+            });
+            this.nodeCount++;
+            this.graph.layout(this.layout);
+        }
     }
 
 	RemoveNode() {
@@ -72,6 +98,17 @@ class Graph {
 		this.graph.layout(this.layout);
 	}
 
+    CalcDegreeOfVertex() {
+	    for(let i = 0; i < this.graph.nodes().length;i++) {
+	        console.log(`Вершина ${this.graph.nodes()[i].data("id")} степень:${this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length}`);
+        }
+    }
+
+    BFS() {
+	    //Можно использовать параметры. Подробнее: http://js.cytoscape.org/#eles.breadthFirstSearch
+	    let result = this.graph.elements().bfs();
+	    console.log(result.path);
+    }
 
 }
 
