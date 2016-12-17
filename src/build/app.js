@@ -1,5 +1,5 @@
-let $ = require('jQuery');
-let Graph = require('../app/graph.js');
+import $ from 'jQuery';
+import Graph from '../app/graph.js';
 let _graph = new Graph('root', null);
 
 $(document).ready( function() {

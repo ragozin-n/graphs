@@ -1,6 +1,6 @@
-let cytoscape = require('cytoscape');
+import cytoscape from 'cytoscape';
 
-class Graph {
+export default class Graph {
 	constructor(root_element_id, styles) {
         this.nodeCount = 0;
         this.layout = {
@@ -111,5 +111,3 @@ class Graph {
     }
 
 }
-
-module.exports = Graph;
