@@ -1,4 +1,4 @@
-import $ from 'jQuery';
+import $ from '/bower_components/jquery/dist/jquery.js';
 import Graph from '../app/graph.js';
 let _graph = new Graph('root', null);
 
