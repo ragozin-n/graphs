@@ -31,5 +31,7 @@ $(document).ready( function() {
         tab.document.write(JSON.stringify(json));
         tab.focus();
     })
+    $('ul.tabs').tabs();
+    $('ul.tabs').tabs('select_tab', 'tab_id');
 });
 

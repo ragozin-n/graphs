@@ -1,83 +1,128 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Ragozin Nikita Graph Coursework</title>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/bower_components/materialize/dist/css/materialize.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-
-<body>
-    <!-- <script src="/bower_components/materialize/dist/js/materialize.js"></script> -->
-    <style>
-    #root {
+    <head>
+        <title>Ragozin Nikita Graph Coursework</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/bower_components/materialize/dist/css/materialize.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <!-- <script src="/bower_components/materialize/dist/js/materialize.js"></script> -->
+        <style>
+        #root {
         width: 100%;
         height: 90%;
         position: absolute;
         z-index: 999;
         margin: 50;
         top: 50;
-    }
-    
-    nav {
-        padding-left: 5px;
+        }
+       
+        nav {
         background-color: #263238;
-    }
-    
-    .btn {
-        margin-left: 3px;
-        margin-right: 3px;
+        }
+       
+        .btn {
+        margin-left: 2px;
+        margin-right: 2px;
         padding-left: 5px;
         padding-right: 5px;
-    }
-    
-    .inline {
+        }
+       
+        .inline {
         max-width: 100px;
         padding-right: 30px;
-    }
-    
-    nav i.material-icons {
+        }
+        .tabs {
+        height: 30px;
+        width: 70%;
+        background-color: #fff;
+        background-color: #263238;
+        }
+        .row {
+        background-color: #263238;
+        margin-bottom: 0px;
+        }
+       
+        nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        line-height: 52px;
+        }
+        .tabs .tab a {
+        color: #fff;
+        }
+        .row .col.s3 {
+        width: 25%;
+        margin-left: auto;
+        left: auto;
+        right: auto;
+        }
+        .tabs .tab a.active {
+        background-color: transparent;
+        color: #fff;
+        }
+        .tabs .tab a:hover {
+        background-color: transparent;
+        color: #26a69a;
+        }
+        nav i.material-icons {
         display: block;
         font-size: 24px;
         height: inherit;
         line-height: inherit;
-    }
-    </style>
-    <nav>
-        <a class="btn-floating waves-effect waves-light btn AddNode">
-            <i class="material-icons" style="padding-right: 9px;">add</i></a>
-        <a class="btn-floating waves-effect waves-light btn DeleteNode">
-            <i class="material-icons" style="padding-right: 9px;">remove</i></a>
-        <div class="input-field inline">
-            <input id="from" style="padding-left: 3rem; width: 60px;">
-            <label>From:</label>
+        }
+
+        </style>
+        
+        <nav class="nav-extended">
+            <div class="nav-wrapper"style="margin-left:auto;text-align:center;
+                margin-right:auto;
+                width:85%;">
+                <div class="row">
+                    <div class="col s12">
+                        <ul class="tabs"style="border-color: white;">
+                            <li class="tab col s3"style="border-color: white;"><a class="active" style="border-color: white;" href="#normal">Normal graph</a></li>
+                            <li class="tab col s3" style=""><a href="#digraph">Digraph</a></li>
+                            <li class="tab col s3" style="padding: -5px;"><a href="#oriented">Oriented normal</a></li>
+                            <li class="tab col s3" style="padding: -5px;"><a href="#orienteddi">Oriented digraph</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="normal" class="col s12">
+                    <a class="btn-floating waves-effect waves-light btn AddNode">
+                    <i class="material-icons" style="padding-right: 9px;">add</i></a>
+                    <a class="btn-floating waves-effect waves-light btn DeleteNode">
+                    <i class="material-icons" style="padding-right: 9px;">remove</i></a>
+                    <div class="input-field inline">
+                        <input id="from" style="padding-left: 3rem; width: 60px;">
+                        <label>From:</label>
+                    </div>
+                    <div class="input-field inline">
+                        <input id="to">
+                        <label>To:</label>
+                    </div>
+                </div>
+                <div id="digraph" class="col s12">
+                    <a class="waves-effect waves-light btn CreateEdge" href="#">Create Edge</a>
+                    <a class="waves-effect waves-light btn Export" href="#">Export</a>
+                    <a class="waves-effect waves-light btn Load" href="#">Load</a>
+                </div>
+                <div id="oriented" class="col s12">
+                    <a class="waves-effect waves-light btn Load" href="#">Degree</a>
+                    <a class="waves-effect waves-light btn Connectivity" href="#">Connectivity</a>
+                    <a class="waves-effect waves-light btn Simplify" href="#">Simplify</a>
+                </div>
+                <div id="orienteddi" class="col s12"> 
+                    <a class="waves-effect waves-light btn Isomorhpism" href="#">Isomorhpism</a>
+                    <a class="waves-effect waves-light btn BFS" href="#">BFS</a>
+                    <a class="waves-effect waves-light btn DFS" href="#">DFS</a>
+                </div>    
+            </ul>
         </div>
-        <div class="input-field inline">
-            <input id="to">
-            <label>To:</label>
-        </div>
-        <a class="waves-effect waves-light btn CreateEdge" href="#">Create Edge</a>
-        <a class="waves-effect waves-light btn Export" href="#">Export</a>
-        <a class="waves-effect waves-light btn Load" href="#">Load</a>
-        <a class="waves-effect waves-light btn Load" href="#">Degree</a>
-        <a class="waves-effect waves-light btn Connectivity" href="#">Connectivity</a>
-        <a class="waves-effect waves-light btn Simplify" href="#">Simplify</a>
-        <a class="waves-effect waves-light btn Isomorhpism" href="#">Isomorhpism</a>
-        <a class="waves-effect waves-light btn BFS" href="#">BFS</a>
-        <a class="waves-effect waves-light btn DFS" href="#">DFS</a>
     </nav>
-    <div class="row start-panel">
-      <div class="col s12 m5">
-        <div class="card-panel teal">
-          <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-          </span>
-        </div>
-      </div>
-    </div>
     <div id="root"></div>
     <script src="../app/bundle.js"></script>
 </body>
-
 </html>
