@@ -1,5 +1,5 @@
 import $ from '../../bower_components/jquery/dist/jquery.js';
-import Graph from '../app/graph.js';
+import Graph from '../build/graph.js';
 let _graph = new Graph('root', null);
 
 $(document).ready( function() {
