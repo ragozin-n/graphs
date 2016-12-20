@@ -91,16 +91,16 @@ export default class Graph {
 	}
 
 	CreateEdge(from, to, value) {
-        if(!value) {
+        if(!isNaN(parseFloat(value)) && isFinite(value)) {
             this.graph.add({
                 group: 'edges',
-                data: {id: 'edge_' + from + "_" + to, source: from, target: to},
+                data: {id: 'edge_' + from + "_" + to, source: from, target: to, label: value},
                 classes: 'autorotate'
             });
         } else {
             this.graph.add({
                 group: 'edges',
-                data: {id: 'edge_' + from + "_" + to, source: from, target: to, label: value},
+                data: {id: 'edge_' + from + "_" + to, source: from, target: to},
                 classes: 'autorotate'
             });
         }
