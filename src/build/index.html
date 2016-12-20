@@ -1,39 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Ragozin Nikita Graph Coursework</title>
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="/bower_components/materialize/dist/css/materialize.min.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ragozin Nikita Graph Coursework</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/materialize/dist/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+
 <body>
-   <!-- <script src="/bower_components/materialize/dist/js/materialize.js"></script> -->
+    <!-- <script src="/bower_components/materialize/dist/js/materialize.js"></script> -->
     <style>
-        #root {
-            width: 100%;
-            height: 90%;
-            position: absolute;
-            z-index: 999;
-            margin: 50;
-            top: 50;
-        }
-        nav {
-            padding-left: 5px;
-            background-color: #263238;
-        }
-        .btn {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-        .inline {
-            max-width: 120px;
-        }
+    #root {
+        width: 100%;
+        height: 90%;
+        position: absolute;
+        z-index: 999;
+        margin: 50;
+        top: 50;
+    }
+    
+    nav {
+        padding-left: 5px;
+        background-color: #263238;
+    }
+    
+    .btn {
+        margin-left: 3px;
+        margin-right: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    .inline {
+        max-width: 100px;
+        padding-right: 30px;
+    }
+    
+    nav i.material-icons {
+        display: block;
+        font-size: 24px;
+        height: inherit;
+        line-height: inherit;
+    }
     </style>
     <nav>
-        <a class="waves-effect waves-light btn AddNode" href="#">Add</a>
-        <a class="waves-effect waves-light btn DeleteNode" href="#">Delete</a>
+        <a class="btn-floating waves-effect waves-light btn AddNode">
+            <i class="material-icons" style="padding-right: 9px;">add</i></a>
+        <a class="btn-floating waves-effect waves-light btn DeleteNode">
+            <i class="material-icons" style="padding-right: 9px;">remove</i></a>
         <div class="input-field inline">
-            <input id="from">
+            <input id="from" style="padding-left: 3rem; width: 60px;">
             <label>From:</label>
         </div>
         <div class="input-field inline">
@@ -41,9 +58,17 @@
             <label>To:</label>
         </div>
         <a class="waves-effect waves-light btn CreateEdge" href="#">Create Edge</a>
-        <a class="waves-effect waves-light btn Export" href="#">Export (json)</a>
+        <a class="waves-effect waves-light btn Export" href="#">Export</a>
+        <a class="waves-effect waves-light btn Load" href="#">Load</a>
+        <a class="waves-effect waves-light btn Load" href="#">Degree</a>
+        <a class="waves-effect waves-light btn Connectivity" href="#">Connectivity</a>
+        <a class="waves-effect waves-light btn Simplify" href="#">Simplify</a>
+        <a class="waves-effect waves-light btn Isomorhpism" href="#">Isomorhpism</a>
+        <a class="waves-effect waves-light btn BFS" href="#">BFS</a>
+        <a class="waves-effect waves-light btn DFS" href="#">DFS</a>
     </nav>
-	<div id="root"></div>
+    <div id="root"></div>
     <script src="../app/bundle.js"></script>
 </body>
+
 </html>
