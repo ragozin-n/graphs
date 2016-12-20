@@ -3,7 +3,11 @@ import Graph from '../build/graph.js';
 let _graph = new Graph('root', null);
 
 $(document).ready( function() {
-    
+
+    //Убираем див при запуске.
+    $('.start-panel').hide("slow", function(){console.log("done")});
+
+    $('.start-panel').show("slow", function(){console.log("done")});
 
     $('.AddNode').click(function () {
         _graph.AddNode(null);
