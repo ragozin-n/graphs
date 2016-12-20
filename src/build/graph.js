@@ -32,8 +32,17 @@ export default class Graph {
                             'target-arrow-shape': 'triangle',
                             'line-color': '#9dbaea',
                             'target-arrow-color': '#9dbaea',
-                            'curve-style': 'bezier'
+                            'curve-style': 'bezier',
+                            'label': 'data(label)',
+                            'text-outline-color': '#ccc',
+                            'text-outline-width': 3
                         }
+                    },
+                    {
+                      selector: '.autorotate',
+                      style: {
+                        'edge-text-rotation': 'autorotate'
+                      }
                     }
                 ],
                 layout: {
@@ -81,11 +90,20 @@ export default class Graph {
 		this.graph.remove(':selected');
 	}
 
-	CreateEdge(from, to) {
-        this.graph.add({
-            group: 'edges',
-            data: {id: 'edge_' + from + "_" + to, source: from, target: to}
-        });
+	CreateEdge(from, to, value) {
+        if(!value) {
+            this.graph.add({
+                group: 'edges',
+                data: {id: 'edge_' + from + "_" + to, source: from, target: to},
+                classes: 'autorotate'
+            });
+        } else {
+            this.graph.add({
+                group: 'edges',
+                data: {id: 'edge_' + from + "_" + to, source: from, target: to, label: value},
+                classes: 'autorotate'
+            });
+        }
         this.graph.layout(this.layout);
     }
 

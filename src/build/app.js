@@ -22,7 +22,7 @@ $(document).ready( function() {
         $('#from').val('');
         $('#to').val('');
 
-        _graph.CreateEdge(from, to);
+        _graph.CreateEdge(from, to, 0);
     });
     $('.Export').click(function () {
         let json = _graph.ExportAsJson();
