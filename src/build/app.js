@@ -64,6 +64,7 @@ $(document).ready( function() {
         });
     });
     $('.Degree').click(function () {
+        console.log(_graphType);
         if (_graphType in ['ON', 'ONN']) {
             _graph.CalcDegreeOfVertex();
         } else {

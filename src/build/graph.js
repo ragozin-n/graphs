@@ -124,7 +124,7 @@ export default class Graph {
     CalcDegreeOfVertex() {
 	    this.connectivity = 0;
 	    for(let i = 0; i < this.graph.nodes().length;i++) {
-	        console.log(`Вершина ${this.graph.nodes()[i].data("id")} степень:${this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length}`);
+	        console.log(`Вершина ${this.graph.nodes()[i].data("id")} степень: ${this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length}`);
 
 	        //Связность
 	        if(this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length == 0) {
@@ -136,14 +136,14 @@ export default class Graph {
     CalcDegreeOfVertexNO() {
         this.connectivity = 0;
         for(let i = 0; i < this.graph.nodes().length;i++) {
-            console.log(`Вершина ${this.graph.nodes()[i].data("id")}`);
             let currentDegree = 0;
-
+            console.log(this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length,this.graph.edges(`[target=\'${this.graph.nodes()[i].data("id")}\']`).length);
             currentDegree = this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length +
                             this.graph.edges(`[target=\'${this.graph.nodes()[i].data("id")}\']`).length;
+            console.log(`Вершина ${this.graph.nodes()[i].data("id")} степень: ${currentDegree}`);
 
             //Связность
-            if(this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length == 0) {
+            if(this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length == 0 || this.graph.edges(`[target=\'${this.graph.nodes()[i].data("id")}\']`).length == 0) {
                 this.connectivity ++;
             }
         }
