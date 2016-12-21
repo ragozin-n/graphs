@@ -6,7 +6,9 @@ let _graph = new Graph('root', null);
 $(document).ready( function() {
 
     //Убираем див при запуске.
-    $('.start-panel').show("slow", function(){console.log("done")});
+    $('.start-panel').show("slow", function () {
+        console.log("done")
+    });
 
     $('.AddNode').click(function () {
         _graph.AddNode(null);
@@ -36,17 +38,25 @@ $(document).ready( function() {
         console.log(_graph.BFS(1));
     });
     $('.ON').click(function () {
-        $('.start-panel').hide("slow", function(){console.log("done")});
+        $('.start-panel').hide("slow", function () {
+            console.log("done")
+        });
 
     });
     $('.NN').click(function () {
-        $('.start-panel').hide("slow", function(){console.log("done")});
+        $('.start-panel').hide("slow", function () {
+            console.log("done")
+        });
     });
     $('.ONN').click(function () {
-        $('.start-panel').hide("slow", function(){console.log("done")});
+        $('.start-panel').hide("slow", function () {
+            console.log("done")
+        });
     });
     $('.NNN').click(function () {
-        $('.start-panel').hide("slow", function(){console.log("done")});
+        $('.start-panel').hide("slow", function () {
+            console.log("done")
+        });
     });
     $('.Degree').click(function () {
         _graph.CalcDegreeOfVertex();
@@ -55,5 +65,26 @@ $(document).ready( function() {
         _graph.CalcDegreeOfVertex();
         console.log(`Компонента связности графа: ${_graph.connectivity}`);
     });
-});
+    // $('.Load').click(function () {
+    //     _graph.ImportGraph(filename);
+    // });
+    $('#file').change(function(){
 
+        let file = this.files[0];
+
+        let reader = new FileReader();
+        reader.onload = function(progressEvent){
+
+            var lines = this.result.split('\n');
+            for(let i = 0; i < lines.length; i++){
+                let str = lines[i].split(' ');
+                if(str[0] == 'node') {
+                    _graph.AddNode(str[1]);
+                } else if(str[0] == 'edge') {
+                    _graph.CreateEdge(str[1],str[2],str[3]);
+                }
+            }
+        };
+        reader.readAsText(file);
+    });
+});

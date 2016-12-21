@@ -2,7 +2,7 @@ import cytoscape from 'cytoscape';
 
 export default class Graph {
 	constructor(root_element_id, styles) {
-        this.nodeCount = 0;
+        this.nodeCount = 1;
         this.layout = {
             name: 'grid',
             animate: true
@@ -29,14 +29,16 @@ export default class Graph {
                     {
                         selector: 'edge',
                         style: {
-                            'width': 4,
-                            'target-arrow-shape': 'triangle',
-                            'line-color': '#9dbaea',
-                            'target-arrow-color': '#9dbaea',
-                            'curve-style': 'bezier',
-                            'label': 'data(label)',
-                            'text-outline-color': '#ccc',
-                            'text-outline-width': 3
+                            'width': 3,
+                            'line-color': '#ad1a66'
+                            // 'width': 4,
+                            // 'target-arrow-shape': 'triangle',
+                            // 'line-color': '#9dbaea',
+                            // 'target-arrow-color': '#9dbaea',
+                            // 'curve-style': 'bezier',
+                            // 'label': 'data(label)',
+                            // 'text-outline-color': '#ccc',
+                            // 'text-outline-width': 3
                         }
                     },
                     {
@@ -88,6 +90,7 @@ export default class Graph {
     }
 
 	RemoveNode() {
+
 		this.graph.remove(':selected');
 	}
 
@@ -112,8 +115,9 @@ export default class Graph {
 		return this.graph.json();
 	}
 
-	ImportGraphJson(json) {
-		this.graph.json(json);
+	ImportGraph(filename) {
+		// this.graph.json(json);
+        this.graph.json(json);
 		this.graph.layout(this.layout);
 	}
 
