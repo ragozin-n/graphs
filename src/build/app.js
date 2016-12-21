@@ -2,6 +2,7 @@ import $ from '../../bower_components/jquery/dist/jquery.js';
 import Graph from '../build/graph.js';
 
 let _graph = new Graph('root', null);
+let _graphType = "ON";
 
 $(document).ready( function() {
 
@@ -35,34 +36,47 @@ $(document).ready( function() {
         tab.focus();
     });
     $('.BFS').click(function () {
+        //node id
         console.log(_graph.BFS(1));
     });
     $('.ON').click(function () {
         $('.start-panel').hide("slow", function () {
+            _graphType = "ON";
             console.log("done")
         });
-
     });
     $('.NN').click(function () {
         $('.start-panel').hide("slow", function () {
+            _graphType = "NN";
             console.log("done")
         });
     });
     $('.ONN').click(function () {
         $('.start-panel').hide("slow", function () {
+            _graphType = "ONN";
             console.log("done")
         });
     });
     $('.NNN').click(function () {
         $('.start-panel').hide("slow", function () {
+            _graphType = "NNN";
             console.log("done")
         });
     });
     $('.Degree').click(function () {
-        _graph.CalcDegreeOfVertex();
+        if (_graphType in ['ON', 'ONN']) {
+            _graph.CalcDegreeOfVertex();
+        } else {
+            _graph.CalcDegreeOfVertexNO();
+        }
     });
+
     $('.Connectivity').click(function () {
-        _graph.CalcDegreeOfVertex();
+        if (_graphType in ['ON', 'ONN']) {
+            _graph.CalcDegreeOfVertex();
+        } else {
+            _graph.CalcDegreeOfVertexNO();
+        }
         console.log(`Компонента связности графа: ${_graph.connectivity}`);
     });
     // $('.Load').click(function () {

@@ -125,8 +125,26 @@ export default class Graph {
 	    this.connectivity = 0;
 	    for(let i = 0; i < this.graph.nodes().length;i++) {
 	        console.log(`Вершина ${this.graph.nodes()[i].data("id")} степень:${this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length}`);
+
+	        //Связность
 	        if(this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length == 0) {
 	            this.connectivity ++;
+            }
+        }
+    }
+    //non-oriented
+    CalcDegreeOfVertexNO() {
+        this.connectivity = 0;
+        for(let i = 0; i < this.graph.nodes().length;i++) {
+            console.log(`Вершина ${this.graph.nodes()[i].data("id")}`);
+            let currentDegree = 0;
+
+            currentDegree = this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length +
+                            this.graph.edges(`[target=\'${this.graph.nodes()[i].data("id")}\']`).length;
+
+            //Связность
+            if(this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length == 0) {
+                this.connectivity ++;
             }
         }
     }
