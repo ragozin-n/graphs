@@ -1,100 +1,112 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Ragozin Nikita Graph Coursework</title>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/bower_components/materialize/dist/css/materialize.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-
-<body>
-    <!-- <script src="/bower_components/materialize/dist/js/materialize.js"></script> -->
-    <style>
-    #root {
+    <head>
+        <title>Ragozin Nikita Graph Coursework</title>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/bower_components/materialize/dist/css/materialize.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <!-- <script src="/bower_components/materialize/dist/js/materialize.js"></script> -->
+        <style>
+        #root {
         width: 100%;
         height: 90%;
         position: absolute;
         z-index: 999;
         margin: 50;
         top: 50;
-    }
-    
-    nav {
+        }
+        
+        nav {
         padding-left: 5px;
         background-color: #263238;
-    }
-    
-    .btn {
+        }
+        
+        .btn {
         margin-left: 3px;
         margin-right: 3px;
         padding-left: 5px;
         padding-right: 5px;
-    }
-    
-    .inline {
+        }
+        
+        .inline {
         max-width: 100px;
-        padding-right: 30px;
-    }
-    
-    nav i.material-icons {
+        padding-right: 5px;
+        }
+        .input-field.inline {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 0px;
+        }
+        .row .col.s6 {
+        width: 50%;
+        }
+        nav i.material-icons {
         display: block;
         font-size: 24px;
         height: inherit;
         line-height: inherit;
-    }
-        span a {
-            margin-bottom: 15px;
         }
-    </style>
+        span a {
+        margin-bottom: 15px;
+        }
+        </style>
         <nav class="nav-extended">
-            <div class="nav-wrapper"style="margin-left:auto;text-align:center;
+            <div class="nav-wrapper" style="margin-left:auto;text-align:center;
                 margin-right:auto;
-                width:90%;">
-        <a class="btn-floating waves-effect waves-light btn AddNode">
-            <i class="material-icons" style="padding-right: 9px;">add</i></a>
-        <a class="btn-floating waves-effect waves-light btn DeleteNode">
-            <i class="material-icons" style="padding-right: 9px;">remove</i></a>
-        <div class="input-field inline">
-            <input id="from" style="padding-left: 3rem; width: 60px;">
-            <label>From:</label>
-        </div>
-        <div class="input-field inline">
-            <input id="to">
-            <label>To:</label>
-        </div>
-        <div class="input-field inline">
-            <input id="value">
-            <label>Value: </label>
-        </div>
+                width:93%;">
+                <a class="btn-floating waves-effect waves-light btn AddNode">
+                <i class="material-icons" style="padding-right: 9px;">add</i></a>
+                <a class="btn-floating waves-effect waves-light btn DeleteNode">
+                <i class="material-icons" style="padding-right: 9px;">remove</i></a>
+                <div class="input-field inline">
+                    <input id="from" style="padding-left: 3rem; width: 50px;">
+                    <label>From:</label>
+                </div>
+                <div class="input-field inline">
+                    <input id="to" style="width: 50px; padding-left: 1.8rem;">
+                    <label>To:</label>
+                </div>
+                <div class="input-field inline" style="padding-left: 0px;">
+                    <input id="value" style="padding-left: 3.2rem; width: 50px;">
+                    <label>Value: </label>
+                </div>
                 <a class="waves-effect waves-light btn CreateEdge" href="#">Create Edge</a>
                 <a class="waves-effect waves-light btn Export" href="#">Export</a>
-                <input class="input-field inline" name='file' id="file" type="file">
+                <a class="file-field input-field inline btn Load">
+                    <input name='file' id="file" type="file">
+                    Load
+                </a>
                 <a class="waves-effect waves-light btn Degree" href="#">Degree</a>
                 <a class="waves-effect waves-light btn Connectivity" href="#">Connectivity</a>
                 <a class="waves-effect waves-light btn Simplify" href="#">Simplify</a>
                 <a class="waves-effect waves-light btn Isomorhpism" href="#">Isomorhpism</a>
                 <a class="waves-effect waves-light btn BFS" href="#">BFS</a>
                 <a class="waves-effect waves-light btn DFS" href="#">DFS</a>
-</div>
-    </nav>
-    <div class="row start-panel">
-        <div class="col s3"></div>
-      <div class="col s6">
-        <div class="card-panel teal center">
-          <span class="white-text">
-              Выберите тип графа:<br><br>
-              <a class="waves-effect waves-light btn ON" href="#">Ориентированный нагруженный</a>
-              <a class="waves-effect waves-light btn NN" href="#">Неориентированный нагруженный</a>
-              <a class="waves-effect waves-light btn ONN" href="#">Ориентированный ненагруженный</a>
-              <a class="waves-effect waves-light btn NNN" href="#">Неориентированный ненагруженный</a>
-          </span>
+            </div>
+        </nav>
+        <div class="row start-panel">
+            <div class="col s3"></div>
+            <div class="col s6">
+                <div class="card-panel teal center">
+                    <span class="white-text">
+                        ВЫБЕРИТЕ ТИП ГРАФА:<br><br>
+                        <a class="waves-effect waves-light btn ON" style="margin-bottom: 10px; padding-left: 10px;
+                        padding-right: 10px;" href="#">Ориентированный нагруженный</a>
+                        <a class="waves-effect waves-light btn NN" style="margin-bottom: 10px; padding-left: 10px;
+                        padding-right: 10px;" href="#">Неориентированный нагруженный</a>
+                        <a class="waves-effect waves-light btn ONN" style="margin-bottom: 10px; padding-left: 10px;
+                        padding-right: 10px;" href="#">Ориентированный ненагруженный</a>
+                        <a class="waves-effect waves-light btn NNN" style="margin-bottom: 10px; padding-left: 10px;
+                        padding-right: 10px;" href="#" style=" margin-bottom: 0px;
+                        ">Неориентированный ненагруженный</a>
+                    </span>
+                </div>
+            </div>
+            <div class="col s3"></div>
         </div>
-      </div>
-        <div class="col s3"></div>
-    </div>
-    <div id="root"></div>
-    <script src="../app/bundle.js"></script>
-</body>
-
+        <div id="root"></div>
+        <script src="../app/bundle.js"></script>
+    </body>
 </html>

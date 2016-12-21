@@ -30,10 +30,24 @@ $(document).ready( function() {
     });
     $('.Export').click(function () {
         let json = _graph.ExportAsJson();
-        console.log(json);
+        json = JSON.parse(JSON.stringify(json));
+        var res ="";
+        for (var i=0; i<json.elements.nodes.length; i++) {
+            var node = json.elements.nodes[i];
+            res+='node '+node.data.id+'\n';
+        }
+        for (var i=0; i<json.elements.edges.length; i++) {
+            var edges = json.elements.edges[i];
+            res+='edge '+edges.data.source+' '+edges.data.target+' '+edges.data.label+'\n';
+        }
         let tab = window.open('about:blank');
-        tab.document.write(JSON.stringify(json));
+        tab.document.write(res);
         tab.focus();
+        var fs = require('fs');//попытка писать в файл тут хуй знает как это вообще все хз
+        fs.writeFile('graph.txt', res, function (err) {
+        if (err) return console.log(err);
+    });
+
     });
     $('.BFS').click(function () {
         //node id
