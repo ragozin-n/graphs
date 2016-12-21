@@ -7,6 +7,7 @@ export default class Graph {
             name: 'grid',
             animate: true
         };
+        this.connectivity = 1;
         this.lastClickedId = 0;
         //styles позволяет задавать тип графа
         //layout позволяет задавать расположение графа на странице
@@ -59,13 +60,13 @@ export default class Graph {
                 }
             });
         }
-        var debug_info = function (event) {
-            console.log("clicked on " + event.cyTarget.data("id"));
-            this.lastClickedId = event.cyTarget.data("id");
-            console.log("last clicked: " + this.lastClickedId);
-        };
-        //добавил для дебага
-        this.graph.on('click', debug_info.bind(this));
+        // var debug_info = function (event) {
+        //     console.log("clicked on " + event.cyTarget.data("id"));
+        //     this.lastClickedId = event.cyTarget.data("id");
+        //     console.log("last clicked: " + this.lastClickedId);
+        // };
+        // //добавил для дебага
+        // this.graph.on('click', debug_info.bind(this));
     }
 
 	AddNode(name) {
@@ -117,15 +118,19 @@ export default class Graph {
 	}
 
     CalcDegreeOfVertex() {
+	    this.connectivity = 0;
 	    for(let i = 0; i < this.graph.nodes().length;i++) {
 	        console.log(`Вершина ${this.graph.nodes()[i].data("id")} степень:${this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length}`);
+	        if(this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`).length == 0) {
+	            this.connectivity ++;
+            }
         }
     }
 
-    BFS() {
+    BFS(id) {
 	    //Можно использовать параметры. Подробнее: http://js.cytoscape.org/#eles.breadthFirstSearch
-	    let result = this.graph.elements().bfs();
-	    console.log(result.path);
+	    let result = this.graph.elements().bfs(`#${id}`);
+	    return result.path;
     }
 
 }

@@ -17,11 +17,13 @@ $(document).ready( function() {
     $('.CreateEdge').click(function () {
         let from = $('#from').val();
         let to = $('#to').val();
+        let value = $('#value').val();
 
         $('#from').val('');
         $('#to').val('');
+        $('#value').val('');
 
-        _graph.CreateEdge(from, to, 0);
+        _graph.CreateEdge(from, to, value);
     });
     $('.Export').click(function () {
         let json = _graph.ExportAsJson();
@@ -29,6 +31,29 @@ $(document).ready( function() {
         let tab = window.open('about:blank');
         tab.document.write(JSON.stringify(json));
         tab.focus();
-    })
+    });
+    $('.BFS').click(function () {
+        console.log(_graph.BFS(1));
+    });
+    $('.ON').click(function () {
+        $('.start-panel').hide("slow", function(){console.log("done")});
+
+    });
+    $('.NN').click(function () {
+        $('.start-panel').hide("slow", function(){console.log("done")});
+    });
+    $('.ONN').click(function () {
+        $('.start-panel').hide("slow", function(){console.log("done")});
+    });
+    $('.NNN').click(function () {
+        $('.start-panel').hide("slow", function(){console.log("done")});
+    });
+    $('.Degree').click(function () {
+        _graph.CalcDegreeOfVertex();
+    });
+    $('.Connectivity').click(function () {
+        _graph.CalcDegreeOfVertex();
+        console.log(`Компонента связности графа: ${_graph.connectivity}`);
+    });
 });
 
