@@ -1,5 +1,6 @@
 import $ from '../../bower_components/jquery/dist/jquery.js';
 import Graph from '../build/graph.js';
+ // import * as fs from 'fs-web'; через npm i fs-web -S
 
 let _graph = new Graph('root', null);
 let _graphType = "ON";
@@ -31,23 +32,21 @@ $(document).ready( function() {
     $('.Export').click(function () {
         let json = _graph.ExportAsJson();
         json = JSON.parse(JSON.stringify(json));
-        var res ="";
+        var res = "";
         for (var i=0; i<json.elements.nodes.length; i++) {
             var node = json.elements.nodes[i];
-            res+='node '+node.data.id+'\n';
+            res += 'node '+node.data.id+'\n';
         }
         for (var i=0; i<json.elements.edges.length; i++) {
             var edges = json.elements.edges[i];
-            res+='edge '+edges.data.source+' '+edges.data.target+' '+edges.data.label+'\n';
+            res += 'edge '+edges.data.source+' '+edges.data.target+' '+edges.data.label+'\n';
         }
         let tab = window.open('about:blank');
         tab.document.write(res);
         tab.focus();
-        var fs = require('fs');//попытка писать в файл тут хуй знает как это вообще все хз
-        fs.writeFile('graph.txt', res, function (err) {
-        if (err) return console.log(err);
-    });
-
+        
+        // fs.writeFile('graph.txt', res, function (err) {
+        // if (err) return console.log(err);
     });
     $('.BFS').click(function () {
         //node id
@@ -94,9 +93,7 @@ $(document).ready( function() {
         }
         console.log(`Компонента связности графа: ${_graph.connectivity}`);
     });
-    // $('.Load').click(function () {
-    //     _graph.ImportGraph(filename);
-    // });
+
     $('#file').change(function(){
 
         let file = this.files[0];
