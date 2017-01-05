@@ -29,16 +29,16 @@ export default class Graph {
                     {
                         selector: 'edge',
                         style: {
-                            'width': 3,
-                            'line-color': '#ad1a66'
-                            // 'width': 4,
-                            // 'target-arrow-shape': 'triangle',
-                            // 'line-color': '#9dbaea',
-                            // 'target-arrow-color': '#9dbaea',
-                            // 'curve-style': 'bezier',
-                            // 'label': 'data(label)',
-                            // 'text-outline-color': '#ccc',
-                            // 'text-outline-width': 3
+                            // 'width': 3,
+                            // 'line-color': '#ad1a66'
+                            'width': 4,
+                            'target-arrow-shape': 'triangle',
+                            'line-color': '#9dbaea',
+                            'target-arrow-color': '#9dbaea',
+                            'curve-style': 'bezier',
+                            'label': 'data(label)',
+                            'text-outline-color': '#ccc',
+                            'text-outline-width': 3
                         }
                     },
                     {
@@ -62,13 +62,13 @@ export default class Graph {
                 }
             });
         }
-        // var debug_info = function (event) {
-        //     console.log("clicked on " + event.cyTarget.data("id"));
-        //     this.lastClickedId = event.cyTarget.data("id");
-        //     console.log("last clicked: " + this.lastClickedId);
-        // };
-        // //добавил для дебага
-        // this.graph.on('click', debug_info.bind(this));
+        var debug_info = function (event) {
+            //console.log("clicked on " + event.cyTarget.data("id"));
+            this.lastClickedId = event.cyTarget.data("id");
+            //console.log("last clicked: " + this.lastClickedId);
+        };
+        //добавил для дебага
+        this.graph.on('click', debug_info.bind(this));
     }
 
 	AddNode(name) {
@@ -153,6 +153,21 @@ export default class Graph {
 	    //Можно использовать параметры. Подробнее: http://js.cytoscape.org/#eles.breadthFirstSearch
 	    let result = this.graph.elements().bfs(`#${id}`);
 	    return result.path;
+    }
+
+    GetMin() {
+        for(let i = 0; i < this.graph.nodes().length;i++) {
+            if(this.graph.nodes()[i].data("id") == this.lastClickedId) {
+                let curCol = this.graph.edges(`[source=\'${this.graph.nodes()[i].data("id")}\']`);
+                let minimum = 999;
+                for (let j = 0; j < curCol.length; j++) {
+                    if(parseInt(curCol[j].data("label")) < minimum) {
+                        minimum = parseInt(curCol[j].data("label"));
+                    }
+                }
+                console.log(`Минимальное ребро имеет вес: ${minimum}`);
+            }
+        }
     }
 
 }

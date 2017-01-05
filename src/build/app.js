@@ -9,7 +9,7 @@ $(document).ready( function() {
 
     //Убираем див при запуске.
     $('.start-panel').show("slow", function () {
-        console.log("done")
+        //console.log("done")
     });
 
     $('.AddNode').click(function () {
@@ -112,5 +112,8 @@ $(document).ready( function() {
             }
         };
         reader.readAsText(file);
+    });
+    $('.GetMin').click(function() {
+        _graph.GetMin();
     });
 });
